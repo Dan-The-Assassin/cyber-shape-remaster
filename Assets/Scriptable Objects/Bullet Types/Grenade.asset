@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4504203070504933a7e4d916d02f950c, type: 3}
+  m_Name: Grenade
+  m_EditorClassIdentifier: 
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 9b2c7a356f9a345d8971dbe39f77a523, type: 3}
+  <Mesh>k__BackingField: {fileID: 4300000, guid: 377c635e6ac08e6419ccdc298b66e44b, type: 3}
+  <RespawnTime>k__BackingField: 1
+  <Speed>k__BackingField: 7.5
+  <DamageInfo>k__BackingField:
+    <Damage>k__BackingField: 2
+    <Effect>k__BackingField: 3

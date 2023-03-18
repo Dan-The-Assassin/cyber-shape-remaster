@@ -1,0 +1,71 @@
+#+TITLE: Objectives Progress: Report 1
+#+AUTHOR: Cyber-Shape (Team ID: 17)
+#+EMAIL: brown121407@posteo.ro
+#+DATE: <2022-11-07 Mon>
+#+OPTIONS: toc:nil
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+* DONE Create Unity project and upload to GitHub repository.
+Repo at: https://github.com/BerceniSoft/cyber-shape
+
+* DONE Set up Git LFS for binary assets (e.g. FBX files).
+FBX files, Blender projects, PDFs and PNGs are stored with Git LFS.
+
+* DONE Create shapes for player and AI and import them in Unity.
+Created Tetrahedron, Hexahedron, Octahedron, Dodecahedron, Icosahedron
+and an Icosphere in Blender, exported them as FBX files and imported
+them in =Assets/Meshes=.
+
+* DONE Create level decorations and obstacles and import them in Unity.
+Created a bumpy floor, a bunch of trees, bushes and walls in Blender
+and imported them as FBXs in =Assets/Meshes=.
+  
+* DONE Implement a basic shooting system.
+The ~Player.cs~ script handles shooting when clicking the left mouse
+button in the method ~HandleShootInput~ which is called every frame
+(during ~Update~). It shoots the closest projectile from the orbit to
+the target using ~OrbitalController.Shoot~.
+
+* DONE Add a background song.
+There's a song that loops and starts when the game starts.
+
+* TODO Implement rhythm based shooting.
+It's WIP at the moment, hopefully it will be done in the next
+sprint. It's been delayed due to health reasons (member got sick).
+
+* TODO Add UI for player health and shooting.
+It's WIP at the moment, hopefully it will be done in the next
+sprint. It's been delayed due to health reasons (member got sick).
+
+* DONE Implement movement.
+Player moves either with WASD or the arrow keys. See the
+~MovementControl~ method in ~Player.cs~. Since our movement is based
+on rolling the player in a given direction, we use
+~Rigidbody.AddTorque~.
+
+* DONE Add a crosshair on the cursor.
+This is set in ~GameManager.Start~.
+
+* DONE Make enemies spawn around the map.
+At the start of the game, a fixed number of enemies spawn in a given
+area around the player (at a minimum distance). See
+~GameManager.SpawnEnemies~.
+
+* DONE Add rotating projectiles around the player.
+The player's projectiles are controlled by the
+~ProjectileOrbitalController.cs~ and ~Projectile.cs~ scripts. They are
+instantiated in ~ProjectileOrbitalController.Start~ around the player
+and their position is updated with ~Projectile.OrbitAround~.
+
+* DONE Implement evolution system for player.
+Since we don't have a score or any way to keep track of damage done /
+enemies killed, evolution is currently hooked to the left mouse button
+just for demo purposes. The data for each evolution stage is stored in
+scriptable objects (=Assets/Scriptable Objects/Evolution/=): the
+correct mesh, a reference to the next stage (if any) and player and
+enemy data such as starting health for that stage.
+
+Both the player and the enemies can evolve, so they both have the
+~Evolvable.cs~ script attached, which plays a simple animation and
+changes their mesh whenever they evolve (see ~Evolvable.Evolve~).

@@ -1,0 +1,24 @@
+#+TITLE: Objectives: Report 3
+#+AUTHOR: Cyber-Shape (Team ID: 17)
+#+EMAIL: brown121407@posteo.ro
+#+DATE: <2022-11-21 Mon>
+#+OPTIONS: toc:nil
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+* Bug fixing
+- Find out why the RhythmTimer ends up being off-beat sometimes.
+- Prevent projectiles from passing through walls. Always.
+- Make enemies roll on the ground rather than levitate.
+- Fix new projectiles orbit bugs.
+
+* New stuff
+- Add particle effects on evolution.
+- Add particle effects on bullet collisions.
+- Change rhythm system so that shooting on beat increases the damage,
+  but you're allowed to shoot anytime.
+- Add a menu.
+- Spawn enemies in waves.
+- Progress to next level when the player has defeated all waves.
+- Prevent enemies from spawning in walls, maybe with predefined spawn
+  points in each map.

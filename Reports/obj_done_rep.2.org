@@ -1,0 +1,81 @@
+#+TITLE: Objectives Progress: Report 2
+#+AUTHOR: Cyber-Shape (Team ID: 17)
+#+EMAIL: brown121407@posteo.ro
+#+DATE: <2022-11-21 Mon>
+#+OPTIONS: toc:nil
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+
+* DONE/BUGGY Implement rhythm based shooting.
+The ~RhythmTimer.CheckTime~ method returns a boolean indicating
+whether or not the player is allowed to shoot (has clicked on-beat
+with a small margin of error indicated by the ~pityTime~ parameter).
+
+It doesn't always allow you to shoot on-beat and we're still trying to
+figure out why.
+
+* DONE Add UI for player health and shooting.
+The ~PlayerHealth~ class handles rendering the player's health and the
+~RhythmUI~ and ~RhythmLine~ classes handle showing the moving bars to
+indicate when is the player allowed to shoot.
+
+* DONE Add enemy health.
+Enemies now have health controlled by the ~health~ field on the
+~EnemyController~ class and a bar above their heads indicating how
+much of it they have left.
+
+* DONE Make enemies take damage and die when hit by player's projectiles.
+The ~EnemyController.TakeDamage~ method handles damaging the enemies
+whenever a player's projectile hits them (see ~Bullet.OnTriggerEnter~).
+
+* DONE/BUGGY Get rid of projectiles after they hit something.
+~Bullet.OnTriggerEnter~ starts the ~Bullet.Reload~ coroutine which
+disables the bullet's renderer for a while and resets its position.
+
+Sometimes the projectiles pass through walls. We don't know the reason yet.
+
+* DONE/BUGGY Make enemies move towards player.
+Enemies now have a Nav Mesh Agent component on them and each level has
+a baked navmesh. The enemies are moved in ~EnemyController.Update~ by
+calling ~SetDestination~ on their ~NavMeshAgent~ component.
+
+Enemies seem to be spawning and travelling too high on the Y axis, so
+that the player's bullets sometimes pass under them. We're looking for
+a fix.
+
+* DONE Make enemies shoot the player.
+When the player is in the range of an enemy, it shoots. See
+~EnemyController.Update~ and ~EnemyController.Shoot~.
+
+* DONE Tie evolution to kills/score.
+Every 5 points (kills), the player changes shape. See ~Player.AddScore~.
+
+* DONE Add real levels with obstacles.
+Now we have 2 levels with obstacles. See =Level 1.unity= and =Level
+2.unity= inside the =Scenes= folder.
+
+* DONE/BUGGY Fix existing projectile orbit bugs & Improve orbit exit for projectile.
+Now if the projectile selected for shooting would be coming from
+behind the player, instead of passing through the player it
+accelerates in orbit and shoots after it rotates enough for a clean
+orbit exit.
+
+However, in some cases after you play for a while the orbit's center
+is moving away from the center of the player.
+
+* DONE/BUGGY Figure out when and make projectiles respawn in orbit.
+Projectiles now respawn whenever they collide with something.
+
+The problem is that they don't seem to realize that walls are worth
+colliding with sometimes.
+
+* DONE Make camera follow player.
+Done. See ~CameraController~.
+
+* DONE Add proper meshes for projectiles & Make more projectile types.
+See =Prefabs/Bullets=. Now the default projectiles orbiting the player
+are some kind of rockets rather than boring capsules.
+
+* DONE Ensure everything in the scene has at least a basic material.
+

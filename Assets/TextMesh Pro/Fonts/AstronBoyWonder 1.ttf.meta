@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c5d1e729892541940b0f17c70bf1f6c8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Astron Boy Wonder
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 0
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,22 @@
+#+TITLE: Objectives: Report 4
+#+AUTHOR: Cyber-Shape (Team ID: 17)
+#+EMAIL: brown121407@posteo.ro
+#+DATE: <2022-12-04 Sun>
+#+OPTIONS: toc:nil
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+- Tune stats for each projectile type.
+- Tune stats for each evolution stage for enemies.
+- Tune stats for each evolution stage for player.
+- Tune progress parameters (what does the player need to do to beat
+  each level?)
+- Add two more levels.
+- Add more music (each level with its own song).
+- Add volume slider in the options menu.
+- Setup navmeshes in each of the new levels.
+- Make enemies shoot proper projectiles instead of the placeholder
+  sphere they shoot now.
+- Unlock new projectile types as you progress through the game.
+- Add visual cues for bullets that do critical damage (e.g. different
+  colors, greater speed, particle trail etc.).

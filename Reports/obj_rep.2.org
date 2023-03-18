@@ -1,0 +1,28 @@
+#+TITLE: Objectives: Report 2
+#+AUTHOR: Cyber-Shape (Team ID: 17)
+#+EMAIL: brown121407@posteo.ro
+#+DATE: <2022-11-07 Mon>
+#+OPTIONS: toc:nil
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+* Leftovers
+- Implement rhythm based shooting.
+- Add UI for player health and shooting.
+
+* New stuff
+- Add enemy health.
+- Make enemies take damage and die when hit by player's projectiles.
+- Get rid of projectiles after they hit something.
+- Make enemies move towards player.
+- Make enemies shoot the player.
+- Tie evolution to kills/score.
+- Add real levels with obstacles.
+- Fix existing projectile orbit bugs.
+- Improve orbit exit for projectiles (i.e. don't let them pass through
+  player).
+- Figure out when and make projectiles respawn in orbit.
+- Make camera follow player.
+- Add proper meshes for projectiles.
+- Make more projectile types.
+- Ensure everything in the scene has at least a basic material.

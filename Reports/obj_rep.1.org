@@ -1,0 +1,19 @@
+#+TITLE: Objectives: Report 1
+#+AUTHOR: Cyber-Shape (Team ID: 17)
+#+EMAIL: brown121407@posteo.ro
+#+DATE: <2022-10-31 Mon>
+#+OPTIONS: toc:nil
+
+- Create Unity project and upload to GitHub repository.
+- Set up Git LFS for binary assets (e.g. FBX files).
+- Create shapes for player and AI and import them in Unity.
+- Create level decorations and obstacles and import them in Unity.
+- Implement a basic shooting system.
+- Add a background song.
+- Implement rhythm based shooting.
+- Add UI for player health and shooting.
+- Implement movement.
+- Add a crosshair on the cursor.
+- Add rotating projectiles around the player.
+- Make enemies spawn around the map.
+- Implement evolution system for player.

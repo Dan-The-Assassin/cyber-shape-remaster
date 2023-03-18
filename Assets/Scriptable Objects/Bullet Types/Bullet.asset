@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4504203070504933a7e4d916d02f950c, type: 3}
+  m_Name: Bullet
+  m_EditorClassIdentifier: 
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 6eb873e29b9af4de0a22d5d291304f17, type: 3}
+  <Mesh>k__BackingField: {fileID: 4300000, guid: 7b91024a5fc62e640b979649dcfac39a, type: 3}
+  <RespawnTime>k__BackingField: 1
+  <Speed>k__BackingField: 12
+  <DamageInfo>k__BackingField:
+    <Damage>k__BackingField: 1.5
+    <Effect>k__BackingField: 1

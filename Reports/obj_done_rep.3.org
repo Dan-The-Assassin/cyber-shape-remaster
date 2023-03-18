@@ -1,0 +1,85 @@
+#+TITLE: Objectives Progress: Report 3
+#+AUTHOR: Cyber-Shape (Team ID: 17)
+#+EMAIL: brown121407@posteo.ro
+#+DATE: <2022-12-04 Sun>
+#+OPTIONS: toc:nil
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+* Bug fixing
+** DONE Find out why the RhythmTimer ends up being off-beat sometimes.
+See ~RhythmTimer.cs~. Changed the way it works such that it now uses
+beats instead of seconds when deciding if the player clicking "on
+beat". It seems to be more precise than before.
+
+** DONE Prevent projectiles from passing through walls. Always.
+See =Assets/Prefabs/Bullets/Player Projectile.prefab=. This prefab has
+two child game objects, and the one named "Bullet" had a very small
+Capsule Collider, which meant that at high speeds it wasn't
+registering collisions with walls. We changed that into a Mesh
+Collider which gets recalculated every time the mesh of the object
+changes (so it's accurate for all projectile types).
+
+** DONE Make enemies roll on the ground rather than levitate.
+This was fixed by modifying the Base Offset of the enemies' Nav Mesh
+Agent (from 1 to 0.25). The enemies still sort of glide on the ground,
+and sometimes clip through it when spinning, but we're satisfied with
+this kind of movement for now.
+
+** DONE Fix new projectiles orbit bugs.
+See commit =5d1a97e5e7597f3618f8534ce1b92821252bf34f=. The order of
+operations was wrong, now the orbit moves as intended.
+
+* New stuff
+** DONE Add particle effects on evolution.
+The player has a child object with a Particle System component which
+rotates such as to counter the player's rotation (to always point
+upwards, regardless of the player's movement).
+
+See =Scripts/RestoreRotation.cs=, ~Evolvable.Evolve~,
+=Prefabs/Player.prefab=, =Prefabs/Player Evolution Particles.prefab=.
+
+** DONE Add particle effects on bullet collisions.
+Explosions (game objects with particle systems --
+=Prefabs/Bullets/Bullet Explosion.prefab=) are kept in an object pool
+and spawned when a player's bullet collides with something.
+
+See ~Projectiles.Bullet.OnTriggerEnter~,
+=Scripts/Projectiles/BulletExplosion.cs=, =Scripts/ExplosionPool.cs=.
+
+** DONE Change rhythm system so that shooting on beat increases the damage, but you're allowed to shoot anytime.
+The player's damage gets higher the closer the moment when they shoot
+is to the beat.
+
+See ~InputController.HandleShootInput~.
+
+** DONE Add a menu.
+We added a game over screen, the main menu, an options screen and a
+pause overlay.
+
+See ~GameManager.Update~, ~GameManager.PauseGame~,
+~GameManager.ResumeGame~, ~GameManager.GoBackMain~,
+~Player.CheckStatus~. Pausing is implemented by stopping time flow
+(~Time.timeScale = 0f~).
+
+** DONE Spawn enemies in waves.
+See ~GameManager.NextWave~ and ~GameManager.SpawnEnemies~. The number
+of waves per level and enemies per wave is configurable.
+
+** DONE Progress to next level when the player has defeated all waves.
+See ~GameManager.NextWave~ and ~GameManager.ProgressToNextLevel~.
+
+** DONE Prevent enemies from spawning in walls, maybe with predefined spawn points in each map.
+We check if the spawned enemy would collide with anything that isn't
+the floor by projecting a sphere from it's spawn point.
+
+#+BEGIN_SRC csharp
+  if (Physics.CheckSphere(randomPosition, 0.7f, (int) Layers.Floor))
+  {
+      continue;
+  }
+#+END_SRC
+
+See ~GameManager.GetRandomPosition~.
+
+
