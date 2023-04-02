@@ -1,9 +1,12 @@
 using Constants;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Scene = Constants.Scene;
+using System.Runtime.CompilerServices;
+using UnityEditor.VersionControl;
 
 namespace Enemy
 {
@@ -49,6 +52,7 @@ namespace Enemy
         private GameManager _gameManager;
 
         private bool _isRamAttack => _isRamFollowing || _ramDestination != null;
+        private const string TelegraphAttackAnim = "TelegraphAttack";
 
         // This is true while telegraphing attack AND while attacking
         private bool _isTelegraphingOrAttacking = false;
@@ -57,7 +61,6 @@ namespace Enemy
 
         public float health = MaxHp;
 
-        private static readonly int TelegraphAttackAnimTrig = Animator.StringToHash("TelegraphAttack");
         private static readonly int TelegraphRamAttackAnimTrig = Animator.StringToHash("TelegraphRamAttack");
 
 
@@ -139,6 +142,7 @@ namespace Enemy
 
         private void Update()
         {
+            Debug.Log(Vector3.Distance(transform.position,_player.transform.position));
             _healthBar.transform.rotation = _camera.transform.rotation;
             if (_knockedBackDestination != null)
             {
@@ -209,7 +213,17 @@ namespace Enemy
                 return;
             }
 
-            if (_isTelegraphingOrAttacking) return;
+            if (_isTelegraphingOrAttacking)
+            {
+                if (_animator.GetCurrentAnimatorStateInfo(0).IsName(TelegraphAttackAnim))
+                Debug.Log(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+                if (_animator.GetCurrentAnimatorStateInfo(0).IsName(TelegraphAttackAnim) && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0)
+                {
+                    Shoot();
+                }
+                return; 
+            }
+
 
             var time = (int)(Time.time * 1000);
 
@@ -227,7 +241,11 @@ namespace Enemy
 
         private void TelegraphAttack(bool ram)
         {
-            _animator.SetTrigger(ram ? TelegraphRamAttackAnimTrig : TelegraphAttackAnimTrig);
+            if (ram)
+                _animator.SetTrigger(TelegraphRamAttackAnimTrig);
+            //_animator.SetTrigger(ram ? TelegraphRamAttackAnimTrig : TelegraphAttackAnimTrig);
+            if (!ram)
+                _animator.SetBool(TelegraphAttackAnim, true);
             _isTelegraphingOrAttacking = true;
         }
 
@@ -293,8 +311,9 @@ namespace Enemy
                 Instantiate(projectile, projectilePosition, projectileRotation);
             }
 
-            _lastAttackTime = (int)(Time.time * 1000);
             _isTelegraphingOrAttacking = false;
+            _animator.SetBool(TelegraphAttackAnim, false);
+            _lastAttackTime = (int)(Time.time * 1000);
         }
     }
 }
