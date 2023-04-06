@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17307952, g: 0.21632008, b: 0.29832444, a: 1}
+  m_IndirectSpecularColor: {r: 0.173079, g: 0.21631923, b: 0.29832268, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1839,10 +1839,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1220839896352385403, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
-      propertyPath: m_Parameters.textureMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4764261200084441252, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1855,13 +1851,61 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5360700543554486392, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5576741164709612590, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
       propertyPath: m_Name
       value: Final Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5576741164709612590, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771718552311168023, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771718552311168023, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: ramFollowDuration
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771718552311168023, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: timeBetweenRamAttacks
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0132326
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.164146
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9001530473334595022, guid: 9b7ac8b6eae57c0499ef3e74abde8526, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
