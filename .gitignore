@@ -70,3 +70,17 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Rider
+.idea
+
+# Blender
+*.blend?
+*.blend?.meta
+
+# macOS
+.DS_Store
+
+# Reports
+Reports/*.tex
+Reports/*.aux
