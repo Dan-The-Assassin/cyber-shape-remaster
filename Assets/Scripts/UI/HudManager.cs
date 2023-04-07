@@ -22,9 +22,10 @@ namespace UI
         public PlayerHealth Hp { get; private set; }
         public ScoreUI ScoreUI { get; private set; }
         public WavesUI WavesUI { get; private set; }
+        public BulletSpecsUI BulletSpecsUI { get; private set; }
 
         private List<BulletType> Bullets { get; set; } = new();
-        
+
         private const string BulletUIContainerName = "Bullets";
         private const string BulletIconName = "Bullet";
         private const int BulletUiSize = 50;
@@ -39,8 +40,10 @@ namespace UI
         private void Awake()
         {
             Hp = GetComponentInChildren<PlayerHealth>();
-			ScoreUI = GetComponentInChildren<ScoreUI>();
+            ScoreUI = GetComponentInChildren<ScoreUI>();
             WavesUI = GetComponentInChildren<WavesUI>();
+            BulletSpecsUI = GetComponentInChildren<BulletSpecsUI>();
+
             _bulletUiContainer = GameObject.Find(BulletUIContainerName);
         }
 
@@ -99,6 +102,7 @@ namespace UI
             animator.SetBool(Animations.BulletsUI.Triggers.SelectBullet, true);
             _selectedBulletIndex = index;
             UpdateBulletPositions(index);
+            BulletSpecsUI.UpdateBulletSpecsText(bulletType.DamageInfo.Damage, bulletType.Speed);
         }
 
         private void UpdateBulletPositions(int selectedBulletIndex)
@@ -112,7 +116,7 @@ namespace UI
                 bulletUiRectTransform.anchoredPosition = new Vector2(leftOffset, 0);
             }
         }
-        
+
         public void GoToMenu()
         {
             SceneManager.LoadScene((int)Scene.MainMenuScene);
