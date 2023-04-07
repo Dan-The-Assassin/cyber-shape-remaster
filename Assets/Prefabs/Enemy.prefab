@@ -137,11 +137,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5f8d44ac5a4db47824896eca95415c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SlowDuration>k__BackingField: 3
+  <PoisonDelay>k__BackingField: 3
+  <SlowAmount>k__BackingField: 0.3
+  <PoisonCount>k__BackingField: 3
+  enemyBody: {fileID: 8908137836564718879}
   firingSpeed: 2
   projectile: {fileID: 9139162334264945893, guid: f510d68a96d48b74c942598ec49e5cd2, type: 3}
   enemyFirePoint: {fileID: 7821751694810432115}
   minDistance: 10
-  enemyBody: {fileID: 8908137836564718879}
   health: 0
 --- !u!1 &5834089900873688663
 GameObject:
