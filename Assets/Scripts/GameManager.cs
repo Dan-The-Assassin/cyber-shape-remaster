@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Scene = Constants.Scene;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +51,60 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _gameWonText;
     private GameObject _goToMenuButton;
     public bool isGameWon = false;
+    private (bool, Vector3)[] _vectorOfPositions1 = new[] {
+            (false, new Vector3(-13.0f, 0.5f, 2.4f)),
+            (false, new Vector3(-13.2f, 0.5f, 47.7f)),
+            (false, new Vector3(-33.4f, 0.5f, 39.9f)),
+            (false, new Vector3(42.4f, 0.5f, 41.1f)),
+            (false, new Vector3(42.4f, 0.5f, 26.1f)),
+
+            (false, new Vector3(42.4f, 0.5f, 23.9f)),
+            (false, new Vector3(42.4f, 0.5f, -28.8f)),
+            (false, new Vector3(5.3f, 0.5f, -28.8f)),
+            (false, new Vector3(3.0f, 0.5f, -38.3f)),
+            (false, new Vector3(-45.3f, 0.5f, -26.2f)),
+        };
+    private (bool, Vector3)[] _vectorOfPositions2 = new[] {
+            (false, new Vector3(0.0f, 0.5f, 27.6f)),
+            (false, new Vector3(-13.5f, 0.5f, 27.6f)),
+            (false, new Vector3(-24.5f, 0.5f, 42.9f)),
+            (false, new Vector3(24.1f,  0.5f, 42.9f)),
+            (false, new Vector3(24.1f, 0.5f, 7.5f)),
+
+            (false, new Vector3(24.1f, 0.5f, -26.9f)),
+            (false, new Vector3(43.0f, 0.5f, -18.9f)),
+            (false, new Vector3(-13.7f, 0.5f, -13.0f)),
+            (false, new Vector3(-28.9f, 0.5f, 1.6f)),
+            (false, new Vector3(8.6f, 0.5f, -45.4f)),
+        };
+
+    private (bool, Vector3)[] _vectorOfPositions3 = new[] {
+            (false, new Vector3(18.5f, 0.5f, -36.3f)),
+            (false, new Vector3(31.9f, 0.5f, -36.3f)),
+            (false, new Vector3(18.8f, 0.5f, -32.0f)),
+            (false, new Vector3(-36.0f,  0.5f, -14.5f)),
+            (false, new Vector3(-27.2f, 0.5f, 6.5f)),
+
+            (false, new Vector3(-23.0f, 0.5f, 35.4f)),
+            (false, new Vector3(-44.5f, 0.5f, 23.3f)),
+            (false, new Vector3(-0.8f, 0.5f, 35.5f)),
+            (false, new Vector3(8.5f, 0.5f, 7.4f)),
+            (false, new Vector3(27.3f, 0.5f, 24.7f)),
+        };
+
+    private (bool, Vector3)[] _vectorOfPositions4 = new[] {
+            (false, new Vector3(-30.4f, 0.5f, 10.0f)),
+            (false, new Vector3(-33.5f, 0.5f, 28.2f)),
+            (false, new Vector3(-13.8f, 0.5f, 32.4f)),
+            (false, new Vector3(7.3f,  0.5f, 23.5f)),
+            (false, new Vector3(35.8f, 0.5f, 38.4f)),
+
+            (false, new Vector3(35.8f, 0.5f, -18.9f)),
+            (false, new Vector3(19.7f, 0.5f, -35.8f)),
+            (false, new Vector3(-12.4f, 0.5f, -45.9f)),
+            (false, new Vector3(-34.3f, 0.5f, -31.7f)),
+            (false, new Vector3(-33.4f, 0.5f, -4.8f)),
+        };
 
     private void Awake()
     {
@@ -175,15 +230,37 @@ public class GameManager : MonoBehaviour
             NextWave();
         }
     }
-
+    
     private Vector3 GetRandomPosition()
     {
+        Console.WriteLine("entering the funtion");
+        //vector of positions for Map 1
+        ref (bool, Vector3)[] _vectorOfPositions = ref _vectorOfPositions1;
+
+        if (_levelIndex == 1) {
+            _vectorOfPositions = ref _vectorOfPositions1;
+        } else if (_levelIndex == 2) {
+                    _vectorOfPositions = ref _vectorOfPositions2;
+                } else if (_levelIndex == 3) {
+                        _vectorOfPositions = ref _vectorOfPositions3;
+                    } else {
+                        _vectorOfPositions = ref _vectorOfPositions4;
+                    }
+
         while (true)
         {
-            // get random point around the player
-            var randomPosition =
-                new Vector3(Random.Range(_playerPosition.x - maxWidth, _playerPosition.x + maxWidth), 0.5f,
-                    Random.Range(_playerPosition.z - maxWidth, _playerPosition.z + maxWidth));
+            // get random point from the vector of positions
+            var randomPositionFromVector = Random.Range(0, 10);
+            Console.WriteLine(randomPositionFromVector);
+            while (_vectorOfPositions[randomPositionFromVector].Item1 == true)
+            {
+                randomPositionFromVector = Random.Range(0, 10);
+                Console.WriteLine(randomPositionFromVector);
+            }
+
+            _vectorOfPositions[randomPositionFromVector].Item1 = true;
+
+            var randomPosition = _vectorOfPositions[randomPositionFromVector].Item2;
 
             // check if the point is inside the map
             if (randomPosition.x < -_floorSize.x / 2 || randomPosition.x > _floorSize.x / 2 ||
@@ -261,7 +338,29 @@ public class GameManager : MonoBehaviour
             _hudManager.FollowEnemy(enemyObject);
         }
 
+        // call reset vector function
+        if (_levelIndex == 1){
+            ResetVectorOfPositions(_vectorOfPositions1);
+        }
+        else if (_levelIndex == 2){
+            ResetVectorOfPositions(_vectorOfPositions2);
+        }
+        else if (_levelIndex == 3){
+            ResetVectorOfPositions(_vectorOfPositions3);
+        }
+        else{
+            ResetVectorOfPositions(_vectorOfPositions4);
+        }
+
         _spawning = false;
+    }
+
+    private void ResetVectorOfPositions((bool, Vector3)[] _vectorOfPos)
+    {
+        for( var i = 0; i < 10; i++)
+        {
+            _vectorOfPos[i].Item1 = false;
+        }
     }
 
     private void ProgressToNextLevel()
