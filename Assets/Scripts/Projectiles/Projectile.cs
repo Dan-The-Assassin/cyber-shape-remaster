@@ -30,13 +30,9 @@ namespace Projectiles
         {
             _meshRenderer.material.SetColor("_BaseColor", baseColor);
             _meshRenderer.material.SetColor("_EmissionColor", emissionColor);
-            //Gradient grad = new Gradient();
-            //grad.SetKeys(new GradientColorKey[] { new GradientColorKey(emissionColor, 0.0f), new GradientColorKey(emissionColor, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
             _particleSys.Play();
             _particleSysRenderer.material.SetColor("_BaseColor", baseColor * 15f);
             _particleSysRenderer.material.SetColor("_EmissionColor", emissionColor * 15f);
-            //var col = _particleSys.colorOverLifetime;
-            //col.color = grad;
         }
 
         private bool ShouldOrbit => _bullet.ShouldOrbit;
