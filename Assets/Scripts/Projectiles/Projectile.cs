@@ -14,16 +14,25 @@ namespace Projectiles
             set => _bullet.Type = value;
         }
         private Bullet _bullet;
+        private MeshRenderer _meshRenderer;
+        private ParticleSystem _particleSys;
+        private ParticleSystemRenderer _particleSysRenderer;
 
         private void Awake()
         {
             _bullet = GetComponentInChildren<Bullet>();
+            _meshRenderer = _bullet.GetComponent<MeshRenderer>();
+            _particleSys = _bullet.GetComponent<ParticleSystem>();
+            _particleSysRenderer = _bullet.GetComponent<ParticleSystemRenderer>();
         }
 
         public void ChangeBulletColor(Color baseColor, Color emissionColor)
         {
-            _bullet.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
-            _bullet.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", emissionColor);
+            _meshRenderer.material.SetColor("_BaseColor", baseColor);
+            _meshRenderer.material.SetColor("_EmissionColor", emissionColor);
+            _particleSys.Play();
+            _particleSysRenderer.material.SetColor("_BaseColor", baseColor * 15f);
+            _particleSysRenderer.material.SetColor("_EmissionColor", emissionColor * 15f);
         }
 
         private bool ShouldOrbit => _bullet.ShouldOrbit;
