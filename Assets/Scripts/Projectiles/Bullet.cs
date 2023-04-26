@@ -32,6 +32,7 @@ namespace Projectiles
         private Renderer _renderer;
         private MeshFilter _meshFilter;
         private MeshCollider _meshCollider;
+        private ParticleSystem _particleSys;
         private float _damageMultiplier = 1.0f;
 
         private void Awake()
@@ -40,6 +41,8 @@ namespace Projectiles
             _renderer = GetComponent<Renderer>();
             _meshFilter = GetComponent<MeshFilter>();
             _meshCollider = GetComponent<MeshCollider>();
+            _particleSys = GetComponent<ParticleSystem>();
+            _particleSys.Stop();
         }
 
         private void DealAoeDamage(Transform initialEnemy)
@@ -116,6 +119,7 @@ namespace Projectiles
             ReadyForShooting = true;
             GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Colors.BlueBase);
             GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Colors.BlueEmission);
+            _particleSys.Stop();
         }
     }
 }
