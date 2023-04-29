@@ -11,6 +11,8 @@ public class BossShootState : BossState
     private int _projectileCountPerAttackMin;
     private int _projectileCountPerAttackMax;
     private GameObject _projectile;
+    private Camera mainCamera;
+    private CameraShake cameraShake;
     private string TelegraphAttackAnim = BossAnimation.TelegraphAttackAnim;
 
     public void Init(GameObject player, BossController bossController, Rigidbody rb, Animator anim, NavMeshAgent nav, int projectileCountPerAttackMin, int projectileCountPerAttackMax, GameObject projectile)
@@ -19,6 +21,8 @@ public class BossShootState : BossState
         _projectileCountPerAttackMin = projectileCountPerAttackMin;
         _projectileCountPerAttackMax = projectileCountPerAttackMax;
         _projectile = projectile;
+        mainCamera = Camera.main;
+        cameraShake = mainCamera.GetComponent<CameraShake>();
     }
 
     public override void OnEnter()
@@ -33,6 +37,7 @@ public class BossShootState : BossState
         //just in case the state is stopped early
         Anim.SetBool(TelegraphAttackAnim, false);
         Shoot();
+        cameraShake.Shake(mainCamera);
     }
 
     public override void PhysicsUpdate()
