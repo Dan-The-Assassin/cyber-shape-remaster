@@ -65,7 +65,7 @@ namespace Enemy
                 var destination = _player.transform.position;
                 var rotX = destination[0] - enemyBody.transform.position.x;
                 var rotZ = destination[2] - enemyBody.transform.position.z;
-                _rigidbody.AddTorque(new Vector3(_nav.nextPosition[0] / 2, 0, _nav.nextPosition[2] / 2) * _rollSpeed);
+                _rigidbody.AddTorque(new Vector3(rotZ / 2, 0, -rotX / 2) * _rollSpeed/2);
                 
                 _nav.SetDestination(destination);
                 
