@@ -48,10 +48,14 @@ namespace Enemy
 
             _rollSpeed = StageData.RollSpeed;
             _nav.speed = StageData.NavSpeed;
+            _nav.updatePosition = false;
+            
         }
 
         private void Update()
         {
+            
+            
             _healthBar.transform.rotation = _camera.transform.rotation;
             var distance = Vector3.Distance(_player.transform.position, transform.position);
             transform.LookAt(_player.transform);
@@ -61,14 +65,19 @@ namespace Enemy
                 var destination = _player.transform.position;
                 var rotX = destination[0] - enemyBody.transform.position.x;
                 var rotZ = destination[2] - enemyBody.transform.position.z;
-                _rigidbody.AddTorque(new Vector3(rotX / 2, 0, rotZ / 2) * _rollSpeed);
+                _rigidbody.AddTorque(new Vector3(_nav.nextPosition[0] / 2, 0, _nav.nextPosition[2] / 2) * _rollSpeed);
+                
                 _nav.SetDestination(destination);
+                
             }
 
             if (distance < minDistance)
             {
                 Shoot();
             }
+
+            _nav.updatePosition = true;
+            //_nav.nextPosition = _rigidbody.position;
         }
 
         private void SetMaxHealth(float maxHealth)

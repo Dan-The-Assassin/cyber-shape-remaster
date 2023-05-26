@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Projectiles;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,8 +37,9 @@ namespace Enemy
         {
             _meshRenderer = GetComponentInChildren<MeshRenderer>();
             _nav = GetComponent<NavMeshAgent>();
+            
         }
-
+        
         public abstract void TakeDamage(float damage);
 
         public void ApplyBulletEffect(DamageInfo damageInfo)
