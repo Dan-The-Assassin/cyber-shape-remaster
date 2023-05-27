@@ -1,13 +1,11 @@
 using Constants;
 using System.Collections;
 using Unity.IO.LowLevel.Unsafe;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using Scene = Constants.Scene;
 
 namespace Enemy
